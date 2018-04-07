@@ -14,7 +14,9 @@ class PengumumanController extends Controller
     }
     public function pengumuman()
     {
-    	$pengumuman = pengumuman::Join('users','pengumuman.id_user', '=', 'users.id')->get();
+    	$pengumuman = pengumuman::Join('users','pengumuman.id_user', '=', 'users.id')
+                    ->select('pengumuman.*', 'users.name')
+                    ->get();
     	return view('tu.pengumuman', compact('pengumuman'));
     }
     public function tambah(Request $req)
@@ -46,8 +48,7 @@ class PengumumanController extends Controller
     }
     public function edit($id)
     {
-        $pengumumanid = pengumuman::where('pengumuman.id', $id)
-                    ->first();
+        $pengumumanid = pengumuman::where('pengumuman.id', $id)->first();
         return view('tu.pengumuman_update', compact('pengumumanid', 'id'));
     }
     public function update(Request $req)

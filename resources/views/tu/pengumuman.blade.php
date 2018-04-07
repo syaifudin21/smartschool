@@ -1,9 +1,9 @@
 @extends('tu.template')
 
 @section('content')
-<div class="card">
-<div class="card-header">
-    <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+
+<div class="nav-scroller bg-white box-shadow">
+   <ul class="nav nav-underline" id="myTab" role="tablist">
         <li class="nav-item">
         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Latihan</a>
         </li>
@@ -13,7 +13,28 @@
     </ul>
 </div>
 
-<div class="card-body">
+<br><br>
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+<h1 class="h2">Mata pelajaran</h1>
+<div class="btn-toolbar mb-2 mb-md-0">
+  <div class="btn-group mr-2">
+    <button class="btn btn-sm btn-outline-secondary">Share</button>
+    <button class="btn btn-sm btn-outline-secondary">Export</button>
+  </div>
+  <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+    <span data-feather="calendar"></span>
+    This week
+  </button>
+</div>
+</div>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb bg-white" style="padding: 0px">
+    <li class="breadcrumb-item active" aria-current="page">Pengumuman</li>
+  </ol>
+</nav>
+
 
 @if(Session::has('success'))
     <div class="alert alert-info alert-dismissable">
@@ -114,8 +135,6 @@
             </div>
         </form>
     </div>
-</div>
-</div>
 </div>
 @endsection
 

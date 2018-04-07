@@ -28,6 +28,9 @@ Route::put('/latih/update', 'LatihanController@update')->name('latih.update');
 Route::delete('/latih/delete/{id}', 'LatihanController@delete');
 Route::get('/latih/soal/{id}', 'LatihanController@soal');
 Route::post('/latih/soal/tambah', 'LatihanController@soaltambah')->name('latihsoal.tambah');
+Route::get('/latih/soal/update/{id}', 'LatihanController@soalid');
+Route::put('/latih/soal/update', 'LatihanController@soalupdate')->name('soal.update');
+Route::get('/latih/soal/lihat/{id}', 'LatihanController@soallihat');
 Route::delete('latih/soal/delete/{id}', 'LatihanController@soaldelete');
 
 Route::get('/pengumuman', 'PengumumanController@pengumuman');

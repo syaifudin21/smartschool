@@ -33,7 +33,7 @@ class LoginController extends Controller
         } elseif (Auth::user()->status=='2') {
             return '/home';
         } elseif (Auth::user()->status=='3') {
-            return '/home';
+            return '/guru';
         } elseif (Auth::user()->status=='4') {
             return '/home';
         } elseif (Auth::user()->status=='5') {

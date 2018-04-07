@@ -1,20 +1,47 @@
 @extends('tu.template')
 
 @section('content')
-<div class="card">
-<div class="card-header">
-<ul class="nav nav-pills card-header-pills">
-  <li class="nav-item">
-    <a class="nav-link" href="{{url('/tu/kelas/lihat/'.$id)}}">{{$kelasid->nama_kelas}}</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="{{url('/tu/kelas/update/'.$id)}}">Update</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link active" href="{{url('/tu/kelas/mapel/'.$id)}}">Tambah Mapel</a>
-  </li>
-</ul>
+
+<div class="nav-scroller bg-white box-shadow">
+   <ul class="nav nav-underline" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link" href="{{url('/tu/kelas/lihat/'.$id)}}">{{$kelasid->nama_kelas}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{url('/tu/kelas/update/'.$id)}}">Update</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="{{url('/tu/kelas/mapel/'.$id)}}">Tambah Mapel</a>
+      </li>
+    </ul>
 </div>
+
+<br><br>
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+<h1 class="h2">Kelas {{$kelasid->nama_kelas}}</h1>
+<div class="btn-toolbar mb-2 mb-md-0">
+  <div class="btn-group mr-2">
+    <button class="btn btn-sm btn-outline-secondary">Share</button>
+    <button class="btn btn-sm btn-outline-secondary">Export</button>
+  </div>
+  <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+    <span data-feather="calendar"></span>
+    This week
+  </button>
+</div>
+</div>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb bg-white" style="padding: 0px">
+    <li class="breadcrumb-item"><a href="{{url('tu/kelas')}}">Kelas</a></li>
+    <li class="breadcrumb-item"><a href="{{url('/tu/kelas/lihat/'.$id)}}">{{$kelasid->nama_kelas}}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Tambah Mata Pelajaran</li>
+  </ol>
+</nav>
+
+
+<div class="card">
 
 <div class="card-body">
 
