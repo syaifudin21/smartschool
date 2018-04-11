@@ -15,9 +15,9 @@ class Mapel extends Migration
     {
         Schema::create('mapel', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('mapel');
-            $table->longText('deskripsi');
-            $table->timestamps();
+            $table->string('mapel', 100);
+            $table->longText('deskripsi')->nullable();
+            $table->enum('jenis_mapel', ['Mata Pelajaran Wajib (Kelompok A)', 'Mata Pelajaran Wajib (Kelompok B)', 'A. Peminatan Matematika dan Sains', 'B. Peminatan Sosial', 'C. Peminatan Bahasa', 'Palajaran Wajib', 'Muatan Lokal']);
         });
     }
 

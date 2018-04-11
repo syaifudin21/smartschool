@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -118,11 +118,11 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script type="text/javascript" src="{{asset('js/jquery-3.2.1.slim.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/popper.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
+    {{-- <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script> --}}
     <script type="text/javascript" src="{{asset('js/jquery-1.12.4.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/jquery.dataTables.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
-
+    <script type="text/javascript" src="{{asset('js/bootstrap-4.1.min.js')}}"></script>
 
     <!-- Icons -->
     <script src="{{asset('js/feather.min.js')}}"></script>
@@ -142,7 +142,7 @@
     <!-- Graphs -->
     <script src="{{asset('js/Chart.min.js')}}"></script>
 
-        @yield('footer')
+    @yield('script')
 
   </body>
 </html>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Pengumuman extends Migration
+class Latih extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class Pengumuman extends Migration
      */
     public function up()
     {
-        Schema::create('pengumuman', function (Blueprint $table) {
+        Schema::create('latih', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama_pengumuman', 30);
-            $table->longText('isi');
-            $table->longText('misi')->nullable();
-            $table->longText('lampiran')->nullable();
+            $table->string('nama_latih', 30);
+            $table->longText('tujuan_latih');
             $table->dateTime('waktu_mulai');
             $table->dateTime('waktu_selesai');
-            $table->integer('id_user');
+            $table->enum('status', ['Dibuka', 'Ditutup'])->default('Ditutup');
+            $table->enum('jenis_latih', ['Ujian Masuk', 'Ujian Tengah Semester', 'Ujian Akhir Semester', 'Ujian Harian'] );
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ class Pengumuman extends Migration
      */
     public function down()
     {
-         Schema::drop('pengumuman');
+         Schema::drop('latih');
     }
 }

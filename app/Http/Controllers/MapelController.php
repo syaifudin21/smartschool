@@ -26,6 +26,7 @@ class MapelController extends Controller
     	mapel::create([
     		'mapel' => $req->mapel,
     		'deskripsi' => $req->deskripsi,
+            'jenis_mapel' => $req->jenis_mapel,
     	]);
 
     	return back()->with('success','Mata Pelajaran '. $req->mapel. ' Berhasil Ditambahkan');
@@ -45,7 +46,8 @@ class MapelController extends Controller
         mapel::where('id', $req->id_mapel)
         ->update([
             'mapel' => $req->mapel,
-            'deskripsi' => $req->deskripsi
+            'deskripsi' => $req->deskripsi,
+            'jenis_mapel' => $req->jenis_mapel,
         ]);
         return redirect('/tu/mapel/lihat/'. $req->id_mapel)->with('success','Kelas '. $req->mapel. ' Berhasil diupdate');
     }

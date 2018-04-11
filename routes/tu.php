@@ -10,6 +10,7 @@ Route::put('/kelas/update', 'KelasController@update')->name('kelas.update');
 Route::delete('/kelas/delete/{id}', 'KelasController@delete');
 Route::get('/kelas/mapel/{id}', 'KelasController@mapel');
 Route::post('/kelas/mapel/tambah', 'KelasController@mapeltambah')->name('kelasmapel.tambah');
+Route::put('/kelas/mapel/update', 'KelasController@mapelupdate')->name('kelasmapel.update');
 Route::delete('kelas/mapel/delete/{id}', 'KelasController@mapeldelete');
 
 

@@ -66,6 +66,25 @@
                 @endif
             </div>
         </div>
+        <div class="form-group row">
+            <label for="jenis_mapel" class="col-sm-4 col-form-label text-md-right">Jenis Mata Pelajaran</label>
+            <div class="col-md-6">
+                <select class="form-control{{ $errors->has('jenis_latih') ? ' is-invalid' : '' }}" name="jenis_mapel">
+                    @if($mapelid->jenis_mapel != null)
+                    <option value="{{$mapelid->jenis_mapel}}">{{$mapelid->jenis_mapel}}</option>
+                    @else
+                    <option value="">Pilih Jenis Mata Pelajaran</option>
+                    @endif
+                    <option value="Mata Pelajaran Wajib (Kelompok A)">Mata Pelajaran Wajib (Kelompok A)</option>
+                    <option value="Mata Pelajaran Wajib (Kelompok B)">Mata Pelajaran Wajib (Kelompok B)</option>
+                    <option value="A. Peminatan Matematika dan Sains">A. Peminatan Matematika dan Sains</option>
+                    <option value="B. Peminatan Sosial">B. Peminatan Sosial</option>
+                    <option value="C. Peminatan Bahasa">C. Peminatan Bahasa</option>
+                    <option value="Pelajaran Utama">Pelajaran Utama</option>
+                    <option value="Muatan Lokal">Muatan Lokal</option>
+                </select>
+            </div>
+        </div>
         
             <div class="form-group row">
                 <div class="col-md-8 offset-md-4">

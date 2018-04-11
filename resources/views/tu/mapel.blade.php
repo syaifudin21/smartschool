@@ -53,6 +53,7 @@
                 <th>#</th>
                 <th>Mata Pelajaran</th>
                 <th>Deskripsi</th>
+                <th>Jenis Mata Pelajaran</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -63,6 +64,7 @@
                 <td>{{$n++}}</td>
                 <td>{{$mapel->mapel}}</td>
                 <td>{{$mapel->deskripsi}}</td>
+                <td>{{$mapel->jenis_mapel}}</td>
                 <form method="POST" action="{{url('tu/mapel/delete/'.$mapel->id)}}">
                 <td><a href="{{url('tu/mapel/lihat/'.$mapel->id)}}" class="btn btn-outline-success btn-sm">Lihat</a> <a href="{{url('tu/mapel/update/'.$mapel->id)}}" class="btn btn-outline-primary btn-sm">Update</a> 
                     @method('DELETE') {{csrf_field()}}
@@ -101,7 +103,21 @@
                 @endif
             </div>
         </div>
-        
+        <div class="form-group row">
+            <label for="jenis_mapel" class="col-sm-4 col-form-label text-md-right">Jenis Mata Pelajaran</label>
+            <div class="col-md-6">
+                <select class="form-control{{ $errors->has('jenis_latih') ? ' is-invalid' : '' }}" name="jenis_mapel">
+                    <option value="">Pilih Jenis Mata Pelajaran</option>
+                    <option value="Mata Pelajaran Wajib (Kelompok A)">Mata Pelajaran Wajib (Kelompok A)</option>
+                    <option value="Mata Pelajaran Wajib (Kelompok B)">Mata Pelajaran Wajib (Kelompok B)</option>
+                    <option value="A. Peminatan Matematika dan Sains">A. Peminatan Matematika dan Sains</option>
+                    <option value="B. Peminatan Sosial">B. Peminatan Sosial</option>
+                    <option value="C. Peminatan Bahasa">C. Peminatan Bahasa</option>
+                    <option value="Pelajaran Utama">Pelajaran Utama</option>
+                    <option value="Muatan Lokal">Muatan Lokal</option>
+                </select>
+            </div>
+        </div>
             <div class="form-group row">
                 <div class="col-md-8 offset-md-4">
                     <button type="submit" class="btn btn-primary">Tambah</button>

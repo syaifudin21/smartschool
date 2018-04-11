@@ -50,7 +50,13 @@ class KelasController extends Controller
                     ->Join('ta','kelas.id_ta', '=', 'ta.id')
                     ->first();
         $kelasmapel = kelasmapel::where('id_kelas', $id)->get();
-        return view('tu.kelas_detail', compact('kelasid', 'id', 'kelasmapel'));
+        $kelasmapel = kelasmapel::where('kelasmapel.id_kelas', $id)
+                    ->Join('mapel','kelasmapel.id_mapel', '=', 'mapel.id')
+                    ->select('kelasmapel.*', 'mapel.mapel')
+                    ->get();
+        $mapel = mapel::all();
+        $guru =  User::where('status', 3)->get();
+        return view('tu.kelas_detail', compact('kelasid', 'id', 'kelasmapel', 'kelasmapel', 'mapel', 'guru'));
     }
     public function edit($id)
     {
@@ -85,21 +91,57 @@ class KelasController extends Controller
                     ->Join('mapel','kelasmapel.id_mapel', '=', 'mapel.id')
                     ->select('kelasmapel.*', 'mapel.mapel')
                     ->get();
-        return view('tu.kelasmapel', compact('mapel', 'id', 'kelasid', 'kelasmapel'));
+        $guru =  User::where('status', 3)->get();
+        return view('tu.kelasmapel', compact('mapel', 'id', 'kelasid', 'kelasmapel', 'guru'));
     }
     public function mapeltambah(Request $req)
     {
+        $this->validate($req, [
+            'mapel_kelas' => 'required',
+            'jam' => 'required',
+        ]);
+
         $mapelkelas = kelasmapel::where(['id_kelas'=> $req->id_kelas, 'id_mapel'=>$req->mapel_kelas])->first();
         if ($mapelkelas != null) {
             return back()->with('gagal',' Mata Pelajaran Ada Kesamaan Didalam Kelas');
         }elseif ($mapelkelas == null) {
             kelasmapel::create([
                 'id_kelas' => $req->id_kelas,
+                'jam' => $req->jam,
+                'id_guru' => $req->id_guru,
                 'id_mapel' => $req->mapel_kelas,
             ]);
             return back()->with('success',' Mata Pelajaran Berhasil Ditambahakan Didalam Kelas');
         }else{
             return back()->with('gagal',' Data Gagal Diproses');
+        }
+    }
+    public function mapelupdate(Request $req)
+    {
+        $mapel = kelasmapel::where('kelasmapel.id', $req->id)->first();
+        if ($mapel->id_mapel == $req->id_mapel) {
+            kelasmapel::where('kelasmapel.id', $req->id)->
+            update([
+                'jam' => $req->jam,
+                'id_guru' => $req->id_guru,
+                'id_mapel' => $req->id_mapel,
+            ]);
+            return back()->with('success',' Mata Pelajaran Berhasil Diupdate Didalam Kelas');
+        }else{
+            $mapelkelas = kelasmapel::where(['id_kelas'=> $mapel->id_kelas, 'id_mapel'=>$req->id_mapel])->first();
+            if ($mapelkelas != null) {
+                return back()->with('gagal',' Mata Pelajaran Ada Kesamaan Didalam Kelas');
+            }elseif ($mapelkelas == null) {
+                kelasmapel::where('kelasmapel.id', $req->id)->
+                update([
+                    'jam' => $req->jam,
+                    'id_guru' => $req->id_guru,
+                    'id_mapel' => $req->id_mapel,
+                ]);
+                return back()->with('success',' Mata Pelajaran Berhasil Diupdate Didalam Kelas');
+            }else{
+                return back()->with('gagal',' Data Gagal Diproses');
+            }
         }
     }
     public function mapeldelete($id)

@@ -56,14 +56,134 @@
     <tr><td>Total Siswa</td><td><b>40</b></td></tr>
     <tr><td>Total Mapel</td><td><b>{{count($kelasmapel)}}</b></td></tr>
 </table>
+
+
+<div class="d-flex">
+  <div class="p-2">
+<h1 class="h3">Mata Pelajaran</h1>
+  </div>
+  <div class="ml-auto p-2">
+    <div class="dropdown">
+      <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span data-feather="clipboard"></span> Load Data Kelas
+      </button>
+      <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Tambah dan Load Data</a>
+        <a class="dropdown-item" href="#">Hapus dan Load Data</a>
+        <a class="dropdown-item" href="#">Hapus Semua Mapel</a>
+      </div>
+    </div>
+    {{-- <button class="btn btn-sm btn-outline-secondary">Tambah dan Load Data Keals Lain</button> --}}
+</div>
+</div>
+<table class="table table-sm table-hover">
+          <thead>
+            <tr>
+                <th>Nama Mata Pelajaran</th>
+                <th class="text-center">Jumlah Jam</th>
+                <th class="text-center">Pembimbing</th>
+                <th></th>
+            </tr>
+          </thead>
+        @foreach($kelasmapel as $kelasmapel)
+            <tr>
+                <td> {{$kelasmapel->mapel}} </td>
+                <center>
+                <td class="text-center"> {{$kelasmapel->jam}} </td>
+                <td class="text-center"> <?php $nama = App\User::where('id',$kelasmapel->id_guru)->first();?>
+                    @if($nama != null)
+                    {{$nama->name}} 
+                    @else
+                    @endif
+                </td>
+                <form method="POST" action="{{url('tu/kelas/mapel/delete/'.$kelasmapel->id)}}">
+                <td>
+                    @method('DELETE') {{csrf_field()}}
+                    
+                    <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#exampleModal"
+                    data-id="{{$kelasmapel->id}}" 
+                    data-nama_mapel="{{$kelasmapel->mapel}}" 
+                    data-id_mapel="{{$kelasmapel->id}}"
+                    @if($nama != null)
+                    data-nama="{{$nama->name}}"
+                    @endif
+                    data-id_guru="{{$kelasmapel->id_guru}}"
+                    data-jam="{{$kelasmapel->jam}}"
+                    >Update</button>
+
+                    <button type="submit" class="btn btn-outline-secondary btn-sm"><i class="fa fa-trash"></i> Delete </button>
+                </td>
+                </form>
+            </tr>
+        @endforeach
+        </table>
 </div>
     </div>
 
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="POST" action="{{ route('kelasmapel.update') }}">
+        @csrf @method('PUT')
+      <input type="hidden" name="id" id="id">
+      <div class="modal-body">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Mata Pelajaran</label>
+              <select id="mapel" class="form-control" name="id_mapel">
+                  @foreach($mapel as $map)
+                  <option value="{{$map->id}}">{{$map->mapel}}</option>
+                  @endforeach
+              </select>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Jumlah Jam</label>
+            <input id="jam" type="text" class="form-control" name="jam" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Pembimbing</label>
+              <select id="guru" class="form-control" name="id_guru">
+                  @foreach($guru as $guruid)
+                  <option value="{{$guruid->id}}">{{$guruid->name}}</option>
+                  @endforeach
+              </select>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+      </form>
+    </div>
+  </div>
 </div>
 @endsection
 
 @section('script')
 <script type="text/javascript">
-    $('#example').DataTable();
+      $('#exampleModal').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget)
+          var id = button.data('id') 
+          var id_mapel = button.data('id_mapel') 
+          var id_guru = button.data('id_guru') 
+          var nama = button.data('nama') 
+          var nama_mapel = button.data('nama_mapel') 
+          var jam = button.data('jam') 
+          var modal = $(this)
+
+          modal.find('.modal-title').text('Update ' + nama_mapel)
+          modal.find('#guru').append("<option value=" + id_guru + ">" + nama +"</option>")
+          modal.find('#mapel').append("<option value=" + id_mapel + ">" + nama_mapel +"</option>")
+          modal.find('#jam').val(jam)
+          modal.find('#id').val(id)
+          
+        })
 </script>
 @endsection

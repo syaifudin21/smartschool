@@ -47,8 +47,9 @@
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 <div class="table-responsive-sm">
 <table id="example" class="table table-hover table-sm" style="width:100%">
-    <tr><td width="30%">Nama Mapel</td><td><b>{{$mapelid->mapel}}</b></td></tr>
+    <tr><td width="30%"><b>Nama Mapel</b></td><td><b>{{$mapelid->mapel}}</b></td></tr>
     <tr><td>Deskripsi</td><td>{!!$mapelid->deskripsi!!}</td></tr>
+    <tr><td>Jenis Mata Pelajaran</td><td>{{$mapelid->jenis_mapel}}</td></tr>
 </table>
 </div>
     </div>

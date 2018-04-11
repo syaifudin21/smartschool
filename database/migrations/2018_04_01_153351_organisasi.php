@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Profils extends Migration
+class Organisasi extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class Profils extends Migration
      */
     public function up()
     {
-        Schema::create('profils', function (Blueprint $table) {
+        Schema::create('organisasi', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user');
-            $table->string('alamat');
-            $table->string('hp');
+            $table->string('nama_organisasi', 30);
+            $table->longText('visi')->nullable();
+            $table->longText('misi')->nullable();
+            $table->dateTime('tanggal_berdiri')->nullable();
+            $table->integer('pembina')->nullable();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -29,6 +30,6 @@ class Profils extends Migration
      */
     public function down()
     {
-         Schema::drop('profils');
+         Schema::drop('organisasi');
     }
 }

@@ -13,11 +13,11 @@ class Kelas extends Migration
      */
     public function up()
     {
-         Schema::create('kelas', function (Blueprint $table) {
+        Schema::create('kelas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_ta');
-            $table->string('nama_kelas');
             $table->integer('id_guru');
+            $table->string('nama_kelas');
             $table->timestamps();
         });
     }
