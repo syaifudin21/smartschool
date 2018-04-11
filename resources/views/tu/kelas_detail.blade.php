@@ -57,7 +57,6 @@
     <tr><td>Total Mapel</td><td><b>{{count($kelasmapel)}}</b></td></tr>
 </table>
 
-
 <div class="d-flex">
   <div class="p-2">
 <h1 class="h3">Mata Pelajaran</h1>
@@ -68,9 +67,9 @@
         <span data-feather="clipboard"></span> Load Data Kelas
       </button>
       <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Tambah dan Load Data</a>
-        <a class="dropdown-item" href="#">Hapus dan Load Data</a>
-        <a class="dropdown-item" href="#">Hapus Semua Mapel</a>
+        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#load" data-ket="Tambah dan Load Data">Tambah dan Load Data</a>
+        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#load" data-ket="Hapus dan Load Data">Hapus dan Load Data</a>
+        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#load" data-ket="Hapus Semua Mapel">Hapus Semua Mapel</a>
       </div>
     </div>
     {{-- <button class="btn btn-sm btn-outline-secondary">Tambah dan Load Data Keals Lain</button> --}}
@@ -122,6 +121,56 @@
 
 </div>
 
+<div class="modal fade" id="load" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="POST" action="{{ route('loadmapel.tambah') }}">
+        @csrf
+      <input type="hidden" name="id" id="id">
+      <input type="hidden" name="kelas" value="{{$id}}">
+      <input type="hidden" id="lempar" name="action">
+      <div class="modal-body">
+          <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Tahun Ajaran</label>
+              <select id="pilihta" class="form-control" name="id_ta">
+                  <option>Pilih Tahun Ajaran</option>
+                  @foreach($ta as $ta)
+                  <option value="{{$ta->id}}">{{$ta->tahun_ajaran}}</option>
+                  @endforeach
+              </select>
+          </div>
+           <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Kelas</label>
+              <select id="semuakelas" class="form-control" name="id_kelas">
+              </select>
+          </div>
+
+          <table class="table table-hover table-sm">
+              <thead>
+                  <tr><td><b>Nama Mapel</b></td></tr>
+              </thead>
+              <tbody id="mapelkelas">
+              </tbody>
+          </table>
+          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" id="action" class="btn btn-primary"></button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -168,6 +217,43 @@
 
 @section('script')
 <script type="text/javascript">
+      $(document).ready(function(){
+          $('#pilihta').on('change', function(e){
+              var id = e.target.value;
+              $.get('{{ url('tu/ta/load')}}/'+id, function(data){
+                  console.log(id);
+                  console.log(data);
+                  $('#semuakelas').empty();
+                  $('#semuakelas').append("<option>Pilih Kelas</option>");
+                  $.each(data, function(index, element){
+                      $('#semuakelas').append("<option value=" +element.id+ ">" +element.nama_kelas+"</option>");
+                  });
+              });
+          });
+      });
+      $(document).ready(function(){
+          $('#semuakelas').on('change', function(e){
+              var id = e.target.value;
+              $.get('{{ url('tu/kelas/load')}}/'+id, function(data){
+                  console.log(id);
+                  console.log(data);
+                  $('#mapelkelas').empty();
+                  $.each(data, function(index, element){
+                      $('#mapelkelas').append("<tr><td>"+element.mapel+"</td></tr>");
+                  });
+              });
+          });
+      });
+      $('#load').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget)
+          var ket = button.data('ket') 
+          var modal = $(this)
+
+          modal.find('.modal-title').text(ket)
+          modal.find('#action').text(ket)
+          modal.find('#lempar').val(ket)
+          
+        })
       $('#exampleModal').on('show.bs.modal', function (event) {
           var button = $(event.relatedTarget)
           var id = button.data('id') 

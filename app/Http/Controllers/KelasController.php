@@ -49,14 +49,15 @@ class KelasController extends Controller
                     ->Join('users','kelas.id_guru', '=', 'users.id')
                     ->Join('ta','kelas.id_ta', '=', 'ta.id')
                     ->first();
-        $kelasmapel = kelasmapel::where('id_kelas', $id)->get();
         $kelasmapel = kelasmapel::where('kelasmapel.id_kelas', $id)
                     ->Join('mapel','kelasmapel.id_mapel', '=', 'mapel.id')
                     ->select('kelasmapel.*', 'mapel.mapel')
                     ->get();
+        $ta = tahunajaran::all();
+        $kelas = kelas::all();
         $mapel = mapel::all();
         $guru =  User::where('status', 3)->get();
-        return view('tu.kelas_detail', compact('kelasid', 'id', 'kelasmapel', 'kelasmapel', 'mapel', 'guru'));
+        return view('tu.kelas_detail', compact('kelasid', 'id', 'kelasmapel', 'mapel','ta', 'guru', 'kelas'));
     }
     public function edit($id)
     {
@@ -149,4 +150,55 @@ class KelasController extends Controller
         kelasmapel::where('id', $id)->delete();
         return back()->with('success','Mata Pelajaran Dalam Kelas Berhasil Dihapus');
     }
+    public function datamapel($id){
+        if($id==0){
+            $mapel = kelasmapel::all();
+        }else{
+            $mapel = kelasmapel::where('id_kelas','=',$id)
+                    ->Join('mapel','kelasmapel.id_mapel', '=', 'mapel.id')
+                    ->select('kelasmapel.*', 'mapel.mapel')
+                    ->get();
+        }
+        return $mapel;
+    }
+    public function datata($id)
+    {
+        $ta = kelas::where('id_ta','=',$id)->get();
+        return $ta;
+    }
+    public function mapelload(Request $req)
+    {
+        $kelasmapel = kelasmapel::where('id_kelas', $req->id_kelas)->get();
+        if ($req->action == 'Tambah dan Load Data') {
+            foreach ($kelasmapel as $km) {
+                $klsmapel = kelasmapel::where(['id_kelas'=> $req->kelas,'id_mapel'=> $km->id_mapel])->first();
+                if ($klsmapel == null ) {
+                    kelasmapel::create([
+                        'id_kelas' => $req->kelas,
+                        'jam' => $km->jam,
+                        'id_mapel' => $km->id_mapel,
+                    ]);
+                }
+            }
+            return back()->with('success','Mata Pelajaran Dalam Kelas Berhasil Diload dari Kelas Lain');
+        } elseif ($req->action == 'Hapus dan Load Data') {
+            $klsmapel = kelasmapel::where(['id_kelas'=> $req->kelas])->delete();
+            foreach ($kelasmapel as $km) {
+                if ($klsmapel == null ) {
+                    kelasmapel::create([
+                        'id_kelas' => $req->kelas,
+                        'jam' => $km->jam,
+                        'id_mapel' => $km->id_mapel,
+                    ]);
+                }
+            }
+            return back()->with('success','Mata Pelajaran Dalam Kelas Berhasil Dihapus Dan Disamakan');
+        } else {
+            dd('sepertinya anda akan menghapus semua');
+        }
+
+        
+
+    }
+   
 }

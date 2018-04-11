@@ -12,6 +12,9 @@ Route::get('/kelas/mapel/{id}', 'KelasController@mapel');
 Route::post('/kelas/mapel/tambah', 'KelasController@mapeltambah')->name('kelasmapel.tambah');
 Route::put('/kelas/mapel/update', 'KelasController@mapelupdate')->name('kelasmapel.update');
 Route::delete('kelas/mapel/delete/{id}', 'KelasController@mapeldelete');
+Route::get('/kelas/load/{id}', 'KelasController@datamapel');
+Route::get('/ta/load/{id}', 'KelasController@datata');
+Route::post('/kelas/mapel/load', 'KelasController@mapelload')->name('loadmapel.tambah');
 
 
 Route::get('/mapel', 'MapelController@mapel');

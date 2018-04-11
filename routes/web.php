@@ -45,6 +45,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/coba', function (){
-     return view('tu.coba');
-});
+Route::get('/coba', 'CobaController@index');
+Route::get('/coba/{id}', 'CobaController@ambildata');

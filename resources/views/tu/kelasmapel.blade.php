@@ -167,7 +167,8 @@
       <div class="modal-body">
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Mata Pelajaran</label>
-              <select id="mapel" class="form-control" name="id_mapel">
+              <select class="form-control" name="id_mapel">
+                  <span id="mapel"></span>
                   @foreach($mapel as $map)
                   <option value="{{$map->id}}">{{$map->mapel}}</option>
                   @endforeach
