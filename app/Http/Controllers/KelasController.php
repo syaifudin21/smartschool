@@ -120,30 +120,13 @@ class KelasController extends Controller
     public function mapelupdate(Request $req)
     {
         $mapel = kelasmapel::where('kelasmapel.id', $req->id)->first();
-        if ($mapel->id_mapel == $req->id_mapel) {
-            kelasmapel::where('kelasmapel.id', $req->id)->
-            update([
-                'jam' => $req->jam,
-                'id_guru' => $req->id_guru,
-                'id_mapel' => $req->id_mapel,
-            ]);
-            return back()->with('success',' Mata Pelajaran Berhasil Diupdate Didalam Kelas');
-        }else{
-            $mapelkelas = kelasmapel::where(['id_kelas'=> $mapel->id_kelas, 'id_mapel'=>$req->id_mapel])->first();
-            if ($mapelkelas != null) {
-                return back()->with('gagal',' Mata Pelajaran Ada Kesamaan Didalam Kelas');
-            }elseif ($mapelkelas == null) {
-                kelasmapel::where('kelasmapel.id', $req->id)->
-                update([
-                    'jam' => $req->jam,
-                    'id_guru' => $req->id_guru,
-                    'id_mapel' => $req->id_mapel,
-                ]);
-                return back()->with('success',' Mata Pelajaran Berhasil Diupdate Didalam Kelas');
-            }else{
-                return back()->with('gagal',' Data Gagal Diproses');
-            }
-        }
+        kelasmapel::where('kelasmapel.id', $req->id)->
+        update([
+            'jam' => $req->jam,
+            'id_guru' => $req->id_guru,
+        ]);
+        return back()->with('success',' Mata Pelajaran Berhasil Diupdate Didalam Kelas');
+            
     }
     public function mapeldelete($id)
     {

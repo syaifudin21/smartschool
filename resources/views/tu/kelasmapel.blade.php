@@ -57,19 +57,20 @@
 <div class="tab-content" id="myTabContent">
     <form method="POST" action="{{ route('kelasmapel.tambah') }}">
         @csrf
+        
         <input type="hidden" name="id_kelas" value="{{$id}}">
         <div class="form-group row">
-            <label for="id_guru" class="col-sm-4 col-form-label text-md-right">Maata Pelajaran</label>
+            <label for="mapel_kelas" class="col-sm-4 col-form-label text-md-right">Maata Pelajaran</label>
             <div class="col-md-6">
-                <select class="form-control{{ $errors->has('status') ? ' is-invalid' : '' }}" name="mapel_kelas">
-                    <option>Pilih Mata Pelajaran</option>
+                <select class="form-control{{ $errors->has('mapel_kelas') ? ' is-invalid' : '' }}" name="mapel_kelas" autofocus>
+                    <option value="">Pilih Mata Pelajaran</option>
                     @foreach($mapel as $map)
                     <option value="{{$map->id}}">{{$map->mapel}}</option>
                     @endforeach
                 </select>
-                @if ($errors->has('id_guru'))
+                @if ($errors->has('mapel_kelas'))
                     <span class="invalid-feedback">
-                        <strong>{{ $errors->first('id_guru') }}</strong>
+                        <strong>Mohon jangan kosongkan bagian ini</strong>
                     </span>
                 @endif
             </div>
@@ -77,7 +78,7 @@
         <div class="form-group row">
             <label for="jam" class="col-sm-4 col-form-label text-md-right">Jumlah Jam</label>
             <div class="col-md-6">
-                <input id="jam" type="text" class="form-control{{ $errors->has('jam') ? ' is-invalid' : '' }}" name="jam" value="{{ old('jam') }}" required autofocus>
+                <input id="jam" type="number" class="form-control{{ $errors->has('jam') ? ' is-invalid' : '' }}" name="jam" value="{{ old('jam') }}"  autofocus>
 
                 @if ($errors->has('jam'))
                     <span class="invalid-feedback">
@@ -89,17 +90,12 @@
         <div class="form-group row">
             <label for="id_guru" class="col-sm-4 col-form-label text-md-right">Pembimbing</label>
             <div class="col-md-6">
-                <select class="form-control{{ $errors->has('status') ? ' is-invalid' : '' }}" name="id_guru">
+                <select class="form-control" name="id_guru">
                     <option value="">Pilih Pembimbing</option>
                     @foreach($guru as $guruid)
                     <option value="{{$guruid->id}}">{{$guruid->name}}</option>
                     @endforeach
                 </select>
-                @if ($errors->has('id_guru'))
-                    <span class="invalid-feedback">
-                        <strong>{{ $errors->first('id_guru') }}</strong>
-                    </span>
-                @endif
             </div>
         </div>
 
@@ -167,12 +163,7 @@
       <div class="modal-body">
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Mata Pelajaran</label>
-              <select class="form-control" name="id_mapel">
-                  <span id="mapel"></span>
-                  @foreach($mapel as $map)
-                  <option value="{{$map->id}}">{{$map->mapel}}</option>
-                  @endforeach
-              </select>
+            <input type="text"  readonly class="form-control" id="mapel">
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Jumlah Jam</label>
@@ -209,9 +200,8 @@
           var jam = button.data('jam') 
           var modal = $(this)
 
-          modal.find('.modal-title').text('Update ' + nama_mapel)
           modal.find('#guru').append("<option value=" + id_guru + ">" + nama +"</option>")
-          modal.find('#mapel').append("<option value=" + id_mapel + ">" + nama_mapel +"</option>")
+          modal.find('#mapel').val(nama_mapel)
           modal.find('#jam').val(jam)
           modal.find('#id').val(id)
           

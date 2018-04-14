@@ -26,7 +26,8 @@
 <div class="btn-toolbar mb-2 mb-md-0">
   <div class="btn-group mr-2">
     <button class="btn btn-sm btn-outline-secondary">Share</button>
-    <button class="btn btn-sm btn-outline-secondary">Export</button>
+    <button class="btn btn-sm btn-outline-secondary">Import</button>
+    <a href="{{url('tu/latih/soal/export/'.$id)}}" class="btn btn-sm btn-outline-secondary">Export</a>
   </div>
   <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
     <span data-feather="calendar"></span>
@@ -220,10 +221,6 @@
 <script type="text/javascript">
 
     $('#example').DataTable();
-    
-  $(function () {
-    $('#myTab li:last-child a').tab('show')
-  })
 
 </script>
 @endsection

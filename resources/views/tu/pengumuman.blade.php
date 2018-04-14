@@ -39,7 +39,7 @@
 @if(Session::has('success'))
     <div class="alert alert-info alert-dismissable">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        {{ Session::get('success') }}
+        {!! Session::get('success') !!}
     </div>
 @endif
 
@@ -64,8 +64,8 @@
             <tr>
                 <td>{{$n++}}</td>
                 <td>{{$peng->nama_pengumuman}}</td>
-                <td>{{tanggal(date('Y-m-d-G-i-s', strtotime($peng->waktu_mulai)), true)}}</td>
-                <td>{{tanggal(date('Y-m-d-G-i-s', strtotime($peng->waktu_selesai)), true)}}</td>
+                <td>{{tanggal_jam(date('Y-m-d-G-i-s', strtotime($peng->waktu_mulai)), true)}}</td>
+                <td>{{tanggal_jam(date('Y-m-d-G-i-s', strtotime($peng->waktu_selesai)), true)}}</td>
                 <td>{{$peng->name}}</td>
                 <td>{{$peng->lampiran}}</td>
                 <form method="POST" action="{{url('tu/pengumuman/delete/'.$peng->id)}}">
@@ -109,7 +109,7 @@
         <div class="form-group row">
             <label for="waktu_mulai" class="col-sm-4 col-form-label text-md-right">Waktu Mulai</label>
             <div class="col-md-6">
-                <input id="waktu_mulai" type="date" class="form-control{{ $errors->has('waktu_mulai') ? ' is-invalid' : '' }}" name="waktu_mulai" value="{{ old('waktu_mulai') }}" required autofocus>
+                <input id="datetimepicker1" type="text" class="form-control{{ $errors->has('waktu_mulai') ? ' is-invalid' : '' }}" name="waktu_mulai" value="{{ old('waktu_mulai') }}" required autofocus>
                 @if ($errors->has('waktu_mulai'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('waktu_mulai') }}</strong>
@@ -120,7 +120,7 @@
          <div class="form-group row">
             <label for="waktu_selesai" class="col-sm-4 col-form-label text-md-right">Waktu Selesai</label>
             <div class="col-md-6">
-                <input id="waktu_selesai" type="date" class="form-control{{ $errors->has('waktu_selesai') ? ' is-invalid' : '' }}" name="waktu_selesai" value="{{ old('waktu_selesai') }}" required autofocus>
+                <input id="datetimepicker2" type="text" class="form-control{{ $errors->has('waktu_selesai') ? ' is-invalid' : '' }}" name="waktu_selesai" value="{{ old('waktu_selesai') }}" required autofocus>
                 @if ($errors->has('waktu_selesai'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('waktu_selesai') }}</strong>
@@ -139,7 +139,48 @@
 @endsection
 
 @section('script')
+<script type="text/javascript" src="{{asset('js/jquery.datetimepicker.full.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/jquery.datetimepicker.full.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/jquery.datetimepicker.min.js')}}"></script>
 <script type="text/javascript">
     $('#example').DataTable();
+</script>
+<script type="text/javascript">
+    jQuery.datetimepicker.setLocale('id');
+
+    $('#datetimepicker1').datetimepicker({
+     i18n:{
+      de:{
+       months:[
+        'Januari','Februari','Maret','April',
+        'Mei','Juni','Juli','Agustus',
+        'September','Oktober','November','Desember',
+       ],
+       dayOfWeek:[
+        "Minggu", "Senin", "Selasa", "Rabu", 
+        "Kamis", "Jumat", "Sabtu.",
+       ]
+      }
+     },
+     timepicker:true,
+     format:'Y-m-d H:i'
+    });
+    $('#datetimepicker2').datetimepicker({
+     i18n:{
+      de:{
+       months:[
+        'Januari','Februari','Maret','April',
+        'Mei','Juni','Juli','Agustus',
+        'September','Oktober','November','Desember',
+       ],
+       dayOfWeek:[
+        "Minggu", "Senin", "Selasa", "Rabu", 
+        "Kamis", "Jumat", "Sabtu.",
+       ]
+      }
+     },
+     timepicker:true,
+     format:'Y-m-d H:i'
+    });
 </script>
 @endsection

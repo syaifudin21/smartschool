@@ -186,11 +186,7 @@
       <div class="modal-body">
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Mata Pelajaran</label>
-              <select id="mapel" class="form-control" name="id_mapel">
-                  @foreach($mapel as $map)
-                  <option value="{{$map->id}}">{{$map->mapel}}</option>
-                  @endforeach
-              </select>
+            <input type="text"  readonly class="form-control" id="mapel">
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Jumlah Jam</label>
@@ -264,9 +260,8 @@
           var jam = button.data('jam') 
           var modal = $(this)
 
-          modal.find('.modal-title').text('Update ' + nama_mapel)
           modal.find('#guru').append("<option value=" + id_guru + ">" + nama +"</option>")
-          modal.find('#mapel').append("<option value=" + id_mapel + ">" + nama_mapel +"</option>")
+          modal.find('#mapel').val(nama_mapel)
           modal.find('#jam').val(jam)
           modal.find('#id').val(id)
           

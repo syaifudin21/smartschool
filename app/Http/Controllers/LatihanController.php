@@ -7,6 +7,7 @@ use App\User;
 use App\Models\kelas;
 use App\Models\latih;
 use App\Models\soal;
+use Excel;
 
 class LatihanController extends Controller
 {
@@ -131,5 +132,19 @@ class LatihanController extends Controller
     {
         soal::where('id', $id)->delete();
         return back()->with('success',' Soal Berhasil Dihapus');
+    }
+    public function soalexport($id)
+    {
+        $soal = soal::where('id_latih', $id)->select('soal', 'lampiran', 'jawaban_1', 'jawaban_2', 'jawaban_3', 'jawaban_4', 'jawaban_5', 'benar_2', 'benar_1', 'benar_3', 'benar_4', 'benar_5', 'lampiran_1', 'lampiran_2', 'lampiran_3', 'lampiran_4', 'lampiran_5')->get();
+
+        return excel::download((new $soal), 'invoices.xlsx');
+
+        // return Excel::create('soal', function($excel) use ($soal){
+        //     $excel->sheet('soal', function($sheet) use ($soal){
+        //         $sheet->fromArray($soal);
+        //     });
+        // })->download('xls');
+
+        # code...
     }
 }

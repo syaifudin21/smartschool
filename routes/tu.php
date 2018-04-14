@@ -36,6 +36,8 @@ Route::get('/latih/soal/update/{id}', 'LatihanController@soalid');
 Route::put('/latih/soal/update', 'LatihanController@soalupdate')->name('soal.update');
 Route::get('/latih/soal/lihat/{id}', 'LatihanController@soallihat');
 Route::delete('latih/soal/delete/{id}', 'LatihanController@soaldelete');
+Route::get('/latih/soal/export/{id}', 'LatihanController@soalexport');
+
 
 Route::get('/pengumuman', 'PengumumanController@pengumuman');
 Route::get('/pengumuman/lihat/{id}', 'PengumumanController@lihat');
