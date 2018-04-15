@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TahunAjaran extends Migration
+class PeristiwaOrganisasi extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,7 @@ class TahunAjaran extends Migration
      */
     public function up()
     {
-        Schema::create('ta', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('tahun_ajaran');
-            $table->enum('status', ['aktif','nonaktif'])->default('nonaktif');
-            $table->timestamps();
-        });
+        //
     }
 
     /**
@@ -28,6 +23,6 @@ class TahunAjaran extends Migration
      */
     public function down()
     {
-         Schema::drop('ta');
+        //
     }
 }

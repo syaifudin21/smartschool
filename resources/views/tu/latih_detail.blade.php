@@ -22,7 +22,7 @@
 <h1 class="h2">Latihan {{$latihid->nama_latih}}</h1>
 <div class="btn-toolbar mb-2 mb-md-0">
   <div class="btn-group mr-2">
-    <button class="btn btn-sm btn-outline-secondary">Share</button>
+    <a href="{{url('tu/latih/soal/pengumuman/'.$id)}}" class="btn btn-sm btn-outline-secondary">Tambah Pengumuman</a>
     <button class="btn btn-sm btn-outline-secondary">Export</button>
   </div>
   <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
@@ -48,19 +48,55 @@
 
 <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-<div class="table-responsive-sm">
-<table id="example" class="table table-hover table-sm" style="width:100%">
-    <tr><td width="30%">Nama Latihan</td><td><b>{{$latihid->nama_latih}}</b></td></tr>
-    <tr><td>Tujuan Latihan</td><td><b>{{$latihid->tujuan_latih}}</b></td></tr>
-    <tr><td>Jenis Latihan</td><td><b>{{$latihid->jenis_latih}}</b></td></tr>
-    <tr><td>Jumlah Soal</td><td><b>{{$totalsoal}} butir</b></td></tr>
-    <tr><td>Status</td><td><b>{{$latihid->status}}</b></td></tr>
-    <tr><td>Waktu Mulai</td><td><b>{{tanggal(date('Y-m-d-G-i-s', strtotime($latihid->waktu_mulai)), true)}}</b></td></tr>
-    <tr><td>Waktu Selesai</td><td><b>{{tanggal(date('Y-m-d-G-i-s', strtotime($latihid->waktu_selesai)), true)}}</b></td></tr>
-</table>
-</div>
-    </div>
+      <div class="table-responsive-sm">
+      <table id="example" class="table table-hover table-sm" style="width:100%">
+          <tr><td width="30%">Nama Latihan</td><td><b>{{$latihid->nama_latih}}</b></td></tr>
+          <tr><td>Tujuan Latihan</td><td><b>{{$latihid->tujuan_latih}}</b></td></tr>
+          <tr><td>Jenis Latihan</td><td><b>{{$latihid->jenis_latih}}</b></td></tr>
+          <tr><td>Jumlah Soal</td><td><b>{{$totalsoal}} butir</b></td></tr>
+          <tr><td>Status</td><td><b>{{$latihid->status}}</b></td></tr>
+          <tr><td>Waktu Mulai</td><td><b>{{tanggal(date('Y-m-d-G-i-s', strtotime($latihid->waktu_mulai)), true)}}</b></td></tr>
+          <tr><td>Waktu Selesai</td><td><b>{{tanggal(date('Y-m-d-G-i-s', strtotime($latihid->waktu_selesai)), true)}}</b></td></tr>
+      </table>
+      </div>
 
+<div class="d-flex p-2">
+    <h1 class="h3">Pengumuman</h1>
+</div>
+
+      <table class="table table-hover table-sm">
+        <tr>
+          <th>Nama Pengumuman</th>
+          <th>Isi Pengumuman</th>
+          <th>Mulai</th>
+          <th>Selesai</th>
+          <th>User</th>
+          <th>Objek</th>
+          <th></th>
+        </tr>
+        @foreach($pengumuman as $peng)
+        <tr>
+          <td>{{$peng->nama_pengumuman}}</td>
+          <td>{!! $peng->isi !!}</td>
+          <td>{{$peng->waktu_mulai}}</td>
+          <td>{{$peng->waktu_selesai}}</td>
+          <td>{{$peng->name}}</td>
+          <td>{{$peng->objek}}</td>
+          <form method="POST" action="{{url('tu/pengumuman/delete/'.$peng->id)}}">
+          <td><a href="{{url('tu/pengumuman/lihat/'.$peng->id)}}" class="btn btn-outline-success btn-sm">Lihat</a> 
+            @if(Auth::user()->id == $peng->id_user)
+            <a href="{{url('tu/pengumuman/update/'.$peng->id)}}" class="btn btn-outline-primary btn-sm">Update</a> 
+              @method('DELETE') {{csrf_field()}}
+              <button type="submit" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i> Delete </button>
+            @endif
+          </td>
+          </form>
+        </tr>
+        @endforeach
+      </table>
+     
+
+    </div>
 </div>
 @endsection
 

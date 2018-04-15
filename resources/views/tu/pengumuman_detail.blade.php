@@ -49,9 +49,22 @@
 <table id="example" class="table table-hover table-sm" style="width:100%">
     <tr><td width="30%">Nama Pengumuman</td><td><b>{{$pengumumanid->nama_pengumuman}}</b></td></tr>
     <tr><td>Isi Pengumuman</td><td><b>{{$pengumumanid->isi}}</b></td></tr>
-    <tr><td>Waktu Mulai</td><td><b>{{tanggal(date('Y-m-d-G-i-s', strtotime($pengumumanid->waktu_mulai)), true)}}</b></td></tr>
-    <tr><td>Waktu Selesai</td><td><b>{{tanggal(date('Y-m-d-G-i-s', strtotime($pengumumanid->waktu_selesai)), true)}}</b></td></tr>
+    <tr><td>Waktu Mulai</td><td><b>{{tanggal_jam(date('Y-m-d-G-i-s', strtotime($pengumumanid->waktu_mulai)), true)}}</b></td></tr>
+    <tr><td>Waktu Selesai</td><td><b>{{tanggal_jam(date('Y-m-d-G-i-s', strtotime($pengumumanid->waktu_selesai)), true)}}</b></td></tr>
     <tr><td>Pengumum</td><td><b>{{$pengumumanid->name}}</b></td></tr>
+    <tr><td>Objek</td>
+      <td>
+        <b>{{$pengumumanid->objek}}</b>
+        @if($pengumumanid->id_objek != null)
+          @if($pengumumanid->objek == 'guru' or $pengumumanid->objek == 'siswa' )
+            ({{App\user::find($pengumumanid->id_objek)->name}})
+          @elseif($pengumumanid->objek == 'kelas')
+            ({{App\Models\kelas::find($pengumumanid->id_objek)->nama_kelas}})
+          @endif
+        @else
+            (all)
+        @endif
+      </td></tr>
     <tr><td>Lampiran</td><td><b>{{$pengumumanid->lampiran}}</b></td></tr>
 </table>
 </div>

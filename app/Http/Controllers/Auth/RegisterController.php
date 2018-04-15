@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -28,7 +29,34 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+   protected function redirectTo()
+    {
+        if (Auth::user()->status=='1') {
+            return '/home';
+        } elseif (Auth::user()->status=='2') {
+            return '/admin';
+        } elseif (Auth::user()->status=='3') {
+            return '/guru';
+        } elseif (Auth::user()->status=='4') {
+            return '/home';
+        } elseif (Auth::user()->status=='5') {
+            return '/home';
+        } elseif (Auth::user()->status=='6') {
+            return '/home';
+        } elseif (Auth::user()->status=='7') {
+            return '/home';
+        } elseif (Auth::user()->status=='8') {
+            return '/home';
+        } elseif (Auth::user()->status=='9') {
+            return '/home';
+        } elseif (Auth::user()->status=='10') {
+            return '/tu';
+        } elseif (Auth::user()->status=='11') {
+            return '/admin';
+        } else {
+            return '/home';
+        } 
+    }
 
     /**
      * Create a new controller instance.

@@ -1,14 +1,16 @@
 @extends('tu.template')
 
 @section('content')
-
 <div class="nav-scroller bg-white box-shadow">
    <ul class="nav nav-underline" id="myTab" role="tablist">
         <li class="nav-item">
-        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Latihan</a>
+        <a class="nav-link" href="{{url('/tu/latih/lihat/'.$id)}}">{{$latihid->nama_latih}}</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#tambah" role="tab" aria-controls="profile" aria-selected="false">Tambah</a>
+        <a class="nav-link active" href="{{url('/tu/latih/update/'.$id)}}">Update</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{{url('/tu/latih/soal/'.$id)}}">Soal</a>
         </li>
     </ul>
 </div>
@@ -16,7 +18,7 @@
 <br><br>
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-<h1 class="h2">Pengumuman</h1>
+<h1 class="h2">Update Latihan {{$latihid->nama_latih}}</h1>
 <div class="btn-toolbar mb-2 mb-md-0">
   <div class="btn-group mr-2">
     <button class="btn btn-sm btn-outline-secondary">Share</button>
@@ -29,6 +31,17 @@
 </div>
 </div>
 
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb bg-white" style="padding: 0px">
+    <li class="breadcrumb-item"><a href="{{url('tu/latih')}}">Latihan</a></li>
+    <li class="breadcrumb-item"><a href="{{url('/tu/latih/lihat/'.$id)}}">{{$latihid->nama_latih}}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Tambah Pengumuman</li>
+  </ol>
+</nav>
+
+<div class="card">
+
+<div class="card-body">
 
 @if(Session::has('success'))
     <div class="alert alert-info alert-dismissable">
@@ -38,51 +51,9 @@
 @endif
 
 <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-<div class="table-responsive-sm">
-<table id="example" class="table table-hover table-sm" style="width:100%">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Pengumuman</th>
-                <th>Mulai</th>
-                <th>Selesai</th>
-                <th>Pembuat</th>
-                <th>Objek</th>
-                <th>Lampiran</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <?php $n=1;?>
-        <tbody>
-            @foreach($pengumuman as $peng)
-            <tr>
-                <td>{{$n++}}</td>
-                <td>{{$peng->nama_pengumuman}}</td>
-                <td>{{tanggal_jam(date('Y-m-d-G-i-s', strtotime($peng->waktu_mulai)), true)}}</td>
-                <td>{{tanggal_jam(date('Y-m-d-G-i-s', strtotime($peng->waktu_selesai)), true)}}</td>
-                <td>{{$peng->name}}</td>
-                <td>{{$peng->objek}}</td>
-                <td>{{$peng->lampiran}}</td>
-                <form method="POST" action="{{url('tu/pengumuman/delete/'.$peng->id)}}">
-                <td><a href="{{url('tu/pengumuman/lihat/'.$peng->id)}}" class="btn btn-outline-success btn-sm">Lihat</a> 
-                  @if(Auth::user()->id == $peng->id_user)
-                  <a href="{{url('tu/pengumuman/update/'.$peng->id)}}" class="btn btn-outline-primary btn-sm">Update</a> 
-                    @method('DELETE') {{csrf_field()}}
-                    <button type="submit" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i> Delete </button>
-                  @endif
-                </td>
-                </form>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
-    </div>
-
-    <div class="tab-pane fade" id="tambah" role="tabpanel" aria-labelledby="profile-tab">
     <form method="POST" action="{{ route('pengumuman.tambah') }}">
         @csrf
+        <input type="hidden" name="id_latih" value="{{$id}}">
         <div class="form-group row">
             <label for="nama_pengumuman" class="col-sm-4 col-form-label text-md-right">Nama Pengumuman</label>
             <div class="col-md-6">
@@ -145,7 +116,9 @@
                 </div>
             </div>
         </form>
-    </div>
+
+</div>
+</div>
 </div>
 @endsection
 

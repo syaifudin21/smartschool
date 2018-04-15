@@ -1,4 +1,4 @@
-@extends('tu.template')
+@extends('guru.template')
 
 @section('content')
 

@@ -26,7 +26,7 @@
 <div class="btn-toolbar mb-2 mb-md-0">
   <div class="btn-group mr-2">
     <button class="btn btn-sm btn-outline-secondary">Share</button>
-    <button class="btn btn-sm btn-outline-secondary">Import</button>
+    <button  data-toggle="modal" data-target="#import" class="btn btn-sm btn-outline-secondary">Import</button>
     <a href="{{url('tu/latih/soal/export/'.$id)}}" class="btn btn-sm btn-outline-secondary">Export</a>
   </div>
   <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
@@ -211,16 +211,43 @@
   </div>
 </div>
 
+</div>
 
-    
 
+<div class="modal fade" id="import" tabindex="-1" role="dialog" aria-labelledby="import" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="import">Update </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="POST" action="{{ route('latihsoal.import') }}" enctype="multipart/form-data">
+        @csrf
+      <input type="hidden" name="id_latih" value="{{$id}}">
+      <div class="modal-body">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Mata Pelajaran</label>
+            <input type="text"  readonly class="form-control" id="mapel">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Import File</label>
+            <input type="file" class="form-control" name="file" id="recipient-name">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Import</button>
+      </div>
+      </form>
+    </div>
+  </div>
 </div>
 @endsection
 
 @section('script')
 <script type="text/javascript">
-
     $('#example').DataTable();
-
 </script>
 @endsection

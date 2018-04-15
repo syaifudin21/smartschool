@@ -8,7 +8,22 @@
           <a class="nav-link active" href="{{url('/tu/organisasi/lihat/'.$id)}}">{{$organisasiid->nama_organisasi}}</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="{{url('/tu/organisasi/anggota/'.$id)}}">Anggota</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="{{url('/tu/organisasi/update/'.$id)}}">Update</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url('/tu/organisasi/struktur/'.$id)}}">Struktur</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url('/tu/organisasi/kegiatan/'.$id)}}">Kegiatan</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url('/tu/organisasi/kehadiran/'.$id)}}">Kehadiran</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url('/tu/organisasi/ekspedisi/'.$id)}}">Ekspedisi</a>
         </li>
     </ul>
 </div>

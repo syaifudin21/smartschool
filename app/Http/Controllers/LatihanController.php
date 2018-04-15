@@ -7,6 +7,7 @@ use App\User;
 use App\Models\kelas;
 use App\Models\latih;
 use App\Models\soal;
+use App\Models\pengumuman;
 use Excel;
 
 class LatihanController extends Controller
@@ -44,7 +45,10 @@ class LatihanController extends Controller
     {
         $latihid = latih::where('id', $id)->first();
         $totalsoal = count(soal::where('id_latih', $id)->get());
-        return view('tu.latih_detail', compact('latihid', 'id', 'totalsoal'));
+        $pengumuman = pengumuman::where('id_latih', $id)
+                    ->Join('users','pengumuman.id_user', '=', 'users.id')
+                    ->select('pengumuman.*', 'users.name')->get();
+        return view('tu.latih_detail', compact('latihid', 'id', 'totalsoal', 'pengumuman'));
     }
     public function edit($id)
     {
@@ -67,13 +71,14 @@ class LatihanController extends Controller
     {
         latih::where('id', $id)->delete();
         soal::where('id_latih', $id)->delete();
+        pengumuman::where('id_latih', $id)->delete();
+
         return back()->with('success',' Latihan Berhasil Dihapus');
     }
     public function soal($id)
     {
         $latihid = latih::where('id', $id)->first();
         $soal = soal::where('id_latih', $id)->get();
-
         return view('tu.latihsoal', compact('latihid', 'id', 'soal'));
     }
     public function soallihat($id)
@@ -137,14 +142,46 @@ class LatihanController extends Controller
     {
         $soal = soal::where('id_latih', $id)->select('soal', 'lampiran', 'jawaban_1', 'jawaban_2', 'jawaban_3', 'jawaban_4', 'jawaban_5', 'benar_2', 'benar_1', 'benar_3', 'benar_4', 'benar_5', 'lampiran_1', 'lampiran_2', 'lampiran_3', 'lampiran_4', 'lampiran_5')->get();
 
-        return excel::download((new $soal), 'invoices.xlsx');
-
-        // return Excel::create('soal', function($excel) use ($soal){
-        //     $excel->sheet('soal', function($sheet) use ($soal){
-        //         $sheet->fromArray($soal);
-        //     });
-        // })->download('xls');
-
+        return Excel::create('soal', function($excel) use ($soal){
+            $excel->sheet('soal', function($sheet) use ($soal){
+                $sheet->fromArray($soal);
+            });
+        })->download('xls');
+    }
+    public function soalimport(Request $req)
+    {
+        if ($req->hasFile('file')) {
+            $path = $req->file('file')->getRealPath();
+            $data = Excel::load($path, function($reader){})->get();
+            if (!empty($data) && $data->count()) {
+                foreach ($data as $key => $value) {
+                    soal::create([
+                        'id_latih' =>$req->id_latih,
+                        'soal'=> $value->soal,
+                        'jawaban_1'=> $value->jawaban_1,
+                        'jawaban_2'=> $value->jawaban_2,
+                        'jawaban_3'=> $value->jawaban_3,
+                        'jawaban_4'=> $value->jawaban_4,
+                        'jawaban_5'=> $value->jawaban_5,
+                        'benar_1' =>  $value->benar_1,
+                        'benar_2' =>  $value->benar_2,
+                        'benar_3' =>  $value->benar_3,
+                        'benar_4' =>  $value->benar_4,
+                        'benar_5' =>  $value->benar_5,
+                    ]);
+                }
+            }
+        }
+        return back()->with('success',' Soal Berhasil Diimport');
+    }
+    public function pengumuman($id)
+    {
+        $latihid = latih::where('id', $id)->first();
+        return view('tu.latihpengumuman', compact('latihid', 'id'));
+    }
+    public function storepengumuman(Request $req)
+    {
+        dd($req);
         # code...
     }
 }

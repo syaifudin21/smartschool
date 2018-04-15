@@ -13,3 +13,4 @@
 
 
 Route::get('/', 'GuruController@index')->name('guru');
+Route::get('/pengumuman', 'GuruController@pengumuman');

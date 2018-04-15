@@ -22,6 +22,9 @@ class Pengumuman extends Migration
             $table->dateTime('waktu_mulai');
             $table->dateTime('waktu_selesai');
             $table->integer('id_user');
+            $table->enum('objek', ['umum', 'kelas', 'guru', 'siswa'])->default('umum');
+            $table->integer('id_objek')->nullable();
+            $table->integer('id_latih')->nullable();
             $table->timestamps();
         });
     }

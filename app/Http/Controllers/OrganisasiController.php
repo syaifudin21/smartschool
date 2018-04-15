@@ -70,4 +70,24 @@ class OrganisasiController extends Controller
         organisasi::where('id', $id)->delete();
         return back()->with('success',' Organisasi Berhasil Dihapus');
     }
+    public function struktur($id)
+    {
+        dd($id);
+    }
+    public function kegiatan($id)
+    {
+        dd($id);
+    }
+    public function ekspedisi($id)
+    {
+        dd($id);
+    }
+    public function anggota($id)
+    {
+        dd($id);
+    }
+    public function kehadiran($id)
+    {
+        dd($id);
+    }
 }
