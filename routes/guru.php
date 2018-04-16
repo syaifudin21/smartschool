@@ -13,4 +13,7 @@
 
 
 Route::get('/', 'GuruController@index')->name('guru');
+Route::get('/mapel', 'MapelGuruController@index');
+Route::get('/mapel/{id}', 'MapelGuruController@mapelid');
+
 Route::get('/pengumuman', 'GuruController@pengumuman');

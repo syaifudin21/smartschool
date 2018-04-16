@@ -19,7 +19,7 @@ class OrganisasiController extends Controller
                 ->select('organisasi.*', 'users.name')
                 ->get();
         $guru = User::where('status', 3)->get();
-    	return view('tu.organisasi', compact('organisasi', 'guru'));
+    	return view('layanan.organisasi', compact('organisasi', 'guru'));
     }
     public function tambah(Request $req)
     {
@@ -43,7 +43,7 @@ class OrganisasiController extends Controller
         $organisasiid = organisasi::where('organisasi.id', $id)
                     ->Join('users','organisasi.pembina', '=', 'users.id')
                     ->first();
-        return view('tu.organisasi_detail', compact('organisasiid','id'));
+        return view('layanan.organisasi_detail', compact('organisasiid','id'));
     }
     public function edit($id)
     {
@@ -51,7 +51,7 @@ class OrganisasiController extends Controller
                     ->Join('users','organisasi.pembina', '=', 'users.id')
                     ->first();
         $guru = User::where('status', 3)->get();
-        return view('tu.organisasi_update', compact('organisasiid','guru','id'));
+        return view('layanan.organisasi_update', compact('organisasiid','guru','id'));
     }
     public function update(Request $req)
     {
@@ -63,7 +63,7 @@ class OrganisasiController extends Controller
             'tanggal_berdiri' => $req->tanggal_berdiri, 
             'pembina' => $req->pembina
         ]);
-        return redirect('/tu/organisasi/lihat/'. $req->id_organisasi)->with('success','Pengumuman '. $req->nama_organisasi. ' Berhasil diupdate');
+        return redirect('/layanan/organisasi/lihat/'. $req->id_organisasi)->with('success','Pengumuman '. $req->nama_organisasi. ' Berhasil diupdate');
     }
     public function delete($id)
     {

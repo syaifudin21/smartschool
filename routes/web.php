@@ -45,5 +45,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/siswabaru', 'PendaftaranController@index')->name('siswabaru');
+
 Route::get('/coba', 'CobaController@index');
+Route::get('/typed', function (){
+    return view('typed');
+});
 Route::get('/coba/{id}', 'CobaController@ambildata');
