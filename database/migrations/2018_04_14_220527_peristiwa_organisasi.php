@@ -13,7 +13,11 @@ class PeristiwaOrganisasi extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('peristiwa_organisasi', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('id_organiasisi');
+            $table->text('peristiwa');
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ class PeristiwaOrganisasi extends Migration
      */
     public function down()
     {
-        //
+         Schema::drop('peristiwa_organisasi');
     }
 }

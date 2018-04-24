@@ -13,7 +13,13 @@ class EkspedisiOrganisasi extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('ekspedisi_organisasi', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('id_organiasisi');
+            $table->string('nomor_surat');
+            $table->enum('status', ['Masuk', 'Keluar']);
+            $table->text('lampiran')->nullable();
+        });
     }
 
     /**
@@ -23,6 +29,6 @@ class EkspedisiOrganisasi extends Migration
      */
     public function down()
     {
-        //
+         Schema::drop('ekspedisi_organisasi');
     }
 }

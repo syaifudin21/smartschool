@@ -11,6 +11,4 @@
 |
 */
 
-Route::get('/', function () {
-	    return view('siswa.template');
-});
+Route::get('/', 'SiswaController@index');

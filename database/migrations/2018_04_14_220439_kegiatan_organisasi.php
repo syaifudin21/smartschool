@@ -13,7 +13,14 @@ class KegiatanOrganisasi extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('kegiatan_organisasi', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('id_organiasisi');
+            $table->text('kegiatan');
+            $table->dateTime('waktu_mulai');
+            $table->dateTime('waktu_selesai');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +30,6 @@ class KegiatanOrganisasi extends Migration
      */
     public function down()
     {
-        //
+         Schema::drop('kegiatan_organisasi');
     }
 }

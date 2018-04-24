@@ -38,15 +38,20 @@ Route::get('/', function () {
 		    return view('404');
 		}
 	}else {
-	    return view('welcome');
+	    return view('index.index');
 	};
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/siswabaru', 'PendaftaranController@index')->name('siswabaru');
+Route::get('/daftar', 'PendaftaranController@index')->name('siswabaru');
+Route::post('/daftar', 'PendaftaranController@store')->name('siswa.baru');
 
+
+
+
+//percobaan =================================================
 Route::get('/coba', 'CobaController@index');
 Route::get('/typed', function (){
     return view('typed');

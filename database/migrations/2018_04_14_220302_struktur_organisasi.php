@@ -13,7 +13,15 @@ class StrukturOrganisasi extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('struktur_organisasi', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('id_organiasisi');
+            $table->string('jabatan');
+            $table->integer('id_guru')->nullable();
+            $table->integer('id_siswa')->nullable();
+            $table->text('tugas');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +31,6 @@ class StrukturOrganisasi extends Migration
      */
     public function down()
     {
-        //
+         Schema::drop('struktur_organisasi');
     }
 }
