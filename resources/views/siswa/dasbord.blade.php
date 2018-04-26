@@ -1,6 +1,7 @@
 @extends('siswa.template')
 @section('warna','blue')
 @section('css')
+<link rel="stylesheet" type="text/css" href="{{asset('css/event.css')}}">
 @endsection
 
 @section('menu')
@@ -8,10 +9,10 @@
   <div class="categories-container">
     <div class="container">
      <ul class="tabs">
-        <li class="tab col s3"><a class="active" href="#dasbord">Dasbord</a></li>
+        <li class="tab col s3"><a href="#dasbord">Dasbord</a></li>
         <li class="tab col s3"><a href="#kelas">Kelas</a></li>
         <li class="tab col s3"><a href="#ekstra">Ekstrakurikuler</a></li>
-        <li class="tab col s3"><a href="#pengumuman">Pengumuman</a></li>
+        <li class="tab col s3"><a class="active" href="#pengumuman">Pengumuman</a></li>
       </ul>
     </div>
   </div>
@@ -25,49 +26,322 @@
   <div id="dasbord" class="col s12">
     <div class="row">
 
-      <div class="col s12 m4">
-      <ul class="collection with-header">
-        <li class="collection-header"><h5>Pekerjaan Rumah</h5></li>
-        <li class="collection-item"><b>Matematika</b> <br> hal. 30 'Uji Kompetesi 3'</li>
-        <li class="collection-item"><b>Bhs Indonesia</b> <br> hal. 3 'Uji Kompetesi 3'</li>
-        <li class="collection-item"><b>Kimia</b> <br> hal. 40 'Uji Kompetesi 3'</li>
-        <li class="collection-item"><b>Geografi</b> <br> hal. 22 'Uji Kompetesi 1'</li>
-      </ul>
+      <div class="col s12 m8">
+        <div class="row">
+          <div class="col s3">
+            <img src="{{asset('images/siswa/Desert.jpg')}}" width="100%" style="margin: 6px auto;">
+          </div>
+          <div class="col s9">
+            <h5>Ini adalah Judul</h5>
+            <span>5 Maeret 2018 - 20:40 - Author : Syaifudin</span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderi..... <a href="">Lihat Selengkapnya</a> </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s3">
+            <img src="{{asset('images/siswa/Desert.jpg')}}" width="100%" style="margin: 6px auto;">
+          </div>
+          <div class="col s9">
+            <h5>Ini adalah Judul</h5>
+            <span>5 Maeret 2018 - 20:40 - Author : Syaifudin</span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderi..... <a href="">Lihat Selengkapnya</a> </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s3">
+            <img src="{{asset('images/siswa/Desert.jpg')}}" width="100%" style="margin: 6px auto;">
+          </div>
+          <div class="col s9">
+            <h5>Ini adalah Judul</h5>
+            <span>5 Maeret 2018 - 20:40 - Author : Syaifudin</span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderi..... <a href="">Lihat Selengkapnya</a> </p>
+          </div>
+        </div>
+        
       </div>
 
       <div class="col s12 m4">
-      <ul class="collection with-header">
-        <li class="collection-header"><h5>Agenda</h5></li>
-        <li class="collection-item"><b>12 Maret 2015</b> <br> Pendaftaran Siswa Baru</li>
-        <li class="collection-item"><b>11 Maret 2015</b> <br> Tes Masuk</li>
-        <li class="collection-item"><b>10 Maret 2015</b> <br> Tes Kejuruan</li>
-        <li class="collection-item"><b>09 Maret 2015</b> <br> MOS</li>
-        <li class="collection-item"><b>08 Maret 2015</b> <br> Opram</li>
-      </ul>
+      <div class="row">
+        <table class="bordered highlight">
+          <tr><td><i class="material-icons small left">date_range</i><b>Matematika</b><br>Uji Kompetisi 2 hal.30</td></tr>
+          <tr><td><i class="material-icons small left">date_range</i><b>Kimia</b><br>Uji Kompetisi 2 hal.30</td></tr>
+          <tr><td><i class="material-icons small left">date_range</i><b>Kimia</b><br>Uji Kompetisi 2 hal.30</td></tr>
+          <tr><td><i class="material-icons small left">date_range</i><b>Kimia</b><br>Uji Kompetisi 2 hal.30</td></tr>
+          <tr><td><i class="material-icons small left">date_range</i><b>Kimia</b><br>Uji Kompetisi 2 hal.30</td></tr>
+          <tr><td><i class="material-icons small left">date_range</i><b>Kimia</b><br>Uji Kompetisi 2 hal.30</td></tr>
+        </table>
+      </div>
+      <div class="row">
+        <div class="col s4">
+          <div class="date">
+            <span class="binds"></span>
+            <span class="month">August</span>
+            <h1 class="day">28</h1>
+          </div>
+        </div>
+        <div class="col s8">
+          <b>Penerimaan Siswa Baru</b><br>
+          Lorem ipsum dolor sit amet,  
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s4">
+          <div class="date">
+            <span class="binds"></span>
+            <span class="month">August</span>
+            <h1 class="day">08</h1>
+          </div>
+        </div>
+        <div class="col s8">
+          <b>Pener sitrimaan Siswa Baru</b><br>
+          Lorem ipsum dolo amet,  
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s4">
+          <div class="date">
+            <span class="binds"></span>
+            <span class="month">Maret</span>
+            <h1 class="day">30</h1>
+          </div>
+        </div>
+        <div class="col s8">
+          <b>Penerimaan Siswa Baru</b><br>
+           proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="kelas" class="col s12">
+  <div class="row">
+      <canvas id="densityChart" width="600" height="400"></canvas>
+      <div class="col m8 s12">
+      <table class="bordered striped highlight responsive-table">
+        <thead>
+          <tr>
+              <th>#</th>
+              <th>Matapelajaran</th>
+              <th>Pengajar</th>
+              <th>Nilai Akademik</th>
+              <th>Nilai Praktik</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Matematika</td>
+            <td>Nama Pengajar</td>
+            <td>87 , 80, 70, 70</td>
+            <td>87 , 80, 70, 70</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Bhs Indonesia</td>
+            <td>Nama Pengajar</td>
+            <td>87 , 80, 70, 70</td>
+            <td>87 , 70, 70</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Biologi</td>
+            <td>Nama Pengajar</td>
+            <td>87 , 80, 70, 70</td>
+            <td>87 , 70, 70</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="col m4 s12">
+        <table class="bordered highlight">
+          <tr><td><i class="material-icons small left">date_range</i><b>Matematika</b><br>Uji Kompetisi 2 hal.30</td></tr>
+          <tr><td><i class="material-icons small left">date_range</i><b>Kimia</b><br>Uji Kompetisi 2 hal.30</td></tr>
+          <tr><td><i class="material-icons small left">date_range</i><b>Kimia</b><br>Uji Kompetisi 2 hal.30</td></tr>
+          <tr><td><i class="material-icons small left">date_range</i><b>Kimia</b><br>Uji Kompetisi 2 hal.30</td></tr>
+          <tr><td><i class="material-icons small left">date_range</i><b>Kimia</b><br>Uji Kompetisi 2 hal.30</td></tr>
+          <tr><td><i class="material-icons small left">date_range</i><b>Kimia</b><br>Uji Kompetisi 2 hal.30</td></tr>
+        </table>
+      </div>
+  </div>
+  </div>
+
+  <div id="ekstra" class="col s12">
+
+
+    <div class="row">
+
+      <div class="col s12 m8">
+
+        <div class="row">
+          <div class="col s12 m6">
+            <div class="card blue-grey darken-1">
+              <div class="card-content white-text">
+                <span class="card-title">Struktur Organisasi</span>
+                <p>I am a very simple card. I am good at containing small bits of information.
+                I am convenient because I require little markup to use effectively.</p>
+              </div>
+              <div class="card-action">
+                <a href="#" class="white-text">Lihat</a>
+                <a href="#" class="white-text">Admin</a>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m6">
+            <div class="card orange darken-1">
+              <div class="card-content white-text">
+                <span class="card-title">Program Kerja</span>
+                <p>I am a very simple card. I am good at containing small bits of information.
+                I am convenient because I require little markup to use effectively.</p>
+              </div>
+              <div class="card-action">
+                <a href="#" class="white-text">Lihat</a>
+                <a href="#" class="white-text">Admin</a>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m6">
+            <div class="card brown lighten-1">
+              <div class="card-content white-text">
+                <span class="card-title">Catatan Peristiwa</span>
+                <p>I am a very simple card. I am good at containing small bits of information.
+                I am convenient because I require little markup to use effectively.</p>
+              </div>
+              <div class="card-action">
+                <a href="#" class="white-text">Lihat</a>
+                <a href="#" class="white-text">Admin</a>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m6 white-text">
+            <div class="card cyan ">
+              <div class="card-content">
+                <span class="card-title">Catatan Ekspedisi</span>
+                <p>I am a very simple card. I am good at containing small bits of information.
+                I am convenient because I require little markup to use effectively.</p>
+              </div>
+              <div class="card-action">
+                <a href="#" class="white-text">Lihat</a>
+                <a href="#" class="white-text">Admin</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
       </div>
 
       <div class="col s12 m4">
-      <ul class="collection with-header">
-        <li class="collection-header green darken-1" style="color: white"><h5>Absensi</h5></li>
-        <li class="collection-item"><b>12 Maret 2015</b> <br> masuk 07.00 pulang 14.00</li>
-        <li class="collection-item"><b>11 Maret 2015</b> <br> masuk 06.40 pulang 14.10</li>
-        <li class="collection-item"><b>10 Maret 2015</b> <br> masuk 07.30 pulang 14.20</li>
-        <li class="collection-item"><b>09 Maret 2015</b> <br> masuk 06.20 pulang 14.30</li>
-        <li class="collection-item"><b>08 Maret 2015</b> <br> masuk 06.10 pulang 14.40</li>
-      </ul>
+      <div class="row">
+        <div class="col s4">
+          <div class="date">
+            <span class="binds"></span>
+            <span class="month">August</span>
+            <h1 class="day">28</h1>
+          </div>
+        </div>
+        <div class="col s8">
+          <b>Penerimaan Siswa Baru</b><br>
+          Lorem ipsum dolor sit amet,  
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s4">
+          <div class="date">
+            <span class="binds"></span>
+            <span class="month">August</span>
+            <h1 class="day">08</h1>
+          </div>
+        </div>
+        <div class="col s8">
+          <b>Pener sitrimaan Siswa Baru</b><br>
+          Lorem ipsum dolo amet,  
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s4">
+          <div class="date">
+            <span class="binds"></span>
+            <span class="month">Maret</span>
+            <h1 class="day">30</h1>
+          </div>
+        </div>
+        <div class="col s8">
+          <b>Penerimaan Siswa Baru</b><br>
+           proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+        </div>
+      </div>
       </div>
 
 
     </div>
+   
+    
   </div>
-  <div id="kelas" class="col s12">
-  <div class="row">
-      <canvas id="densityChart" width="600" height="400"></canvas>
+
+  <div id="pengumuman" class="col s12">
+
+    <div class="row">
+        <table class="bordered highlight">
+          <tr><td>
+            <h5>Ujian Tengah Semester</h5>
+             <span><i class="material-icons left">date_range</i>23 Maret 2018 - 22.00 | Author Admin</span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <a href="">Download Lampiran</a></td>
+          </tr>
+          <tr><td>
+            <h5>Ujian Tengah Semester</h5>
+             <span><i class="material-icons left">date_range</i>23 Maret 2018 - 22.00 | Author Admin</span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <a href="">Download Lampiran</a></td>
+          </tr>
+          <tr><td>
+            <h5>Ujian Tengah Semester</h5>
+             <span><i class="material-icons left">date_range</i>23 Maret 2018 - 22.00 | Author Admin</span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <a href="">Download Lampiran</a></td>
+          </tr>
+          <tr><td>
+            <h5>Ujian Tengah Semester</h5>
+             <span><i class="material-icons left">date_range</i>23 Maret 2018 - 22.00 | Author Admin</span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <a href="">Download Lampiran</a></td>
+          </tr>
+        </table>
+      </div>
+
   </div>
   </div>
-  <div id="ekstra" class="col s12">Test 3</div>
-  <div id="pengumuman" class="col s12">Test 4</div>
-</div>
 </div>
 @endsection
 

@@ -31,17 +31,32 @@
       </div>
       <div class="nav-wrapper container">
         <a href="index.html" class="brand-logo"><i class="material-icons">camera</i>Aplikasi</a>
+        <ul class="right">
+          <li><a class='dropdown-button' href='#' data-activates='feature-notif' data-belowOrigin="true" data-constrainWidth="false"><i class="material-icons">notifications_none</i></a></li>
+        </ul>
+        
+
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
           <li class="active"><a href="{{url('/')}}">Muhammad Syaifudin</a></li>
-          <li><a href="{{url('/siswabaru')}}">Logout</a></li>
+          <li><a href="{{url('/siswabaru')}}"><i class="material-icons">forum</i></a></li>
+          <li><a  class='dropdown-button' href='#' data-activates='feature-pengaturan' data-belowOrigin="true" data-constrainWidth="false"><i class="material-icons">settings</i></a></li>
         </ul>
         <!-- Dropdown Structure -->
-        <ul id='feature-dropdown' class='dropdown-content'>
-          <li><a href="full-header.html">Fullscreen Header</a></li>
-          <li><a href="horizontal.html">Horizontal Style</a></li>
-          <li><a href="no-image.html">No Image Expand</a></li>
+        <ul id='feature-notif' class='dropdown-content'>
+          <li><a><b>Matematika</b><br>Uji Kompetisi 2 hal.30</a></li>
+          <li><a><b>Bhs Inggris</b><br>Uji Kompetisi 2 hal.30</a></li>
+          <li><a><b>Sejarah</b><br>Uji Kompetisi 2 hal.30</a></li>
+          <li><a><b>Matematika</b><br>Uji Kompetisi 2 hal.30</a></li>
+          <li><a><b>Matematika</b><br>Uji Kompetisi 2 hal.30</a></li>
         </ul>
+        <ul id='feature-pengaturan' class='dropdown-content' style="    width: 176px;">
+          <li><a href="blog.html"><i class="material-icons left">edit</i>Artikel</a></li>
+          <li><a href="docs.html"><i class="material-icons left">school</i>Pencapaian</a></li>
+          <li><a href="no-image.html"><i class="material-icons left">import_export</i>Eksport</a></li>
+          <li><a href="no-image.html"><i class="material-icons left">power_settings_new</i>Logout</a></li>
+        </ul>
+        
       </div>
 
       <!-- Fixed Masonry Filters -->
@@ -49,13 +64,11 @@
       
     </nav>
     <ul class="side-nav" id="nav-mobile">
-      <li class="active"><a href="index.html"><i class="material-icons">camera</i>Gallery</a></li>
-      <li><a href="index-dark.html"><i class="material-icons">brightness_3</i>Dark Theme</a></li>
-      <li><a href="blog.html"><i class="material-icons">edit</i>Blog</a></li>
-      <li><a href="docs.html"><i class="material-icons">school</i>Docs</a></li>
-      <li><a href="full-header.html"><i class="material-icons">fullscreen</i>Fullscreen Header</a></li>
-      <li><a href="horizontal.html"><i class="material-icons">swap_horiz</i>Horizontal Style</a></li>
-      <li><a href="no-image.html"><i class="material-icons">texture</i>No Image Expand</a></li>
+      <li><a href="blog.html"><i class="material-icons">edit</i>Artikel</a></li>
+      <li><a href="docs.html"><i class="material-icons">school</i>Pencapaian</a></li>
+      <li><a href="horizontal.html"><i class="material-icons">forum</i>Chatting</a></li>
+      <li><a href="no-image.html"><i class="material-icons">import_export</i>Eksport</a></li>
+      <li><a href="no-image.html"><i class="material-icons">power_settings_new</i>Logout</a></li>
     </ul>
 
     @yield('content')
